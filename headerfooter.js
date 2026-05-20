@@ -1,17 +1,11 @@
-async function loadIncludes() {
-    try {
-        const headerResponse = await fetch('header.html');
-        const footerResponse = await fetch('footer.html');
+fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header').innerHTML = data;
+    });
 
-        if (headerResponse.ok) {
-            document.getElementById('header').innerHTML = await headerResponse.text();
-        }
-        if (footerResponse.ok) {
-            document.getElementById('footer').innerHTML = await footerResponse.text();
-        }
-    } catch (error) {
-        console.error("Error loading includes:", error);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', loadIncludes);
+fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer').innerHTML = data;
+    });
