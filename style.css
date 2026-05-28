@@ -31,18 +31,37 @@ body, html {
     display: flex;
     height: 150px;
     border-bottom: 1px solid gray;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
+    background-image: url("resources/images/sitebanner_repeat.png");
+    background-size: auto 150px;
+    background-repeat: repeat-x;
+    overflow: hidden;
 }
 
-#sitelogo {
+#sitebanner {
+    display: flex;
     height: 150px;
-    width: 350px;
+    width: 1920px;
+    margin-left: 10px;
+    transition: 0.4s;
 }
+
+
+#sitelogo {
+    position: absolute;
+    left: calc(50% - 61.5px);
+    top: 0px;
+    height: 150px;
+    width: 123px;
+    transition: 0.4s;
+}
+
 
 #crlogoouter {
     position: absolute;
     right: 10px;
+    transition: 0.4s;
 }
 
 #crlogoouter img {
@@ -50,15 +69,17 @@ body, html {
     width: 125px;
 }
 
+
+
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     background: #333;
     background-blend-mode: darken;
     background-size: cover;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 0px;
     font-family: "Alata", sans-serif;
     font-width: 0.75px;
     height: 50px;
@@ -94,4 +115,26 @@ a.curr {
     height: calc(100% - 96px);
     width: 100%;
     border: none;
+}
+
+@media only screen and (max-width: 960px) {
+    #sitelogo {
+        left: calc(50% - 123px);
+    }
+    #crlogoouter {
+        right: calc(50% - 125px);
+    }
+    #sitebanner {
+        opacity: 0;
+    }
+    .navbar {
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 960px) {
+    #sitelogo {
+        left: calc(100% - 270px);
+    }
+
 }
