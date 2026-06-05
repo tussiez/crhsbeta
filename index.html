@@ -14,31 +14,36 @@
     <div id="header">
         <!-- Logos -->
         <div id="topheader">
-            <a href="index.html" class="curr"><img src="resources/images/sitebanner_logo.png" id="sitebanner">
-                <img src="resources/images/sitelogo.png" id="sitelogo"></a>
+                <img src="resources/images/sitebanner_logo.png" id="sitebanner">
+                <a href="#"><img src="resources/images/sitelogo.png" id="sitelogo"></a>
             
             <a href="https://crhs.fortmillschools.org" target="_blank" id="crlogoouter"><img src="resources/images/crlogo.png" id="crlogo"></a>
         </div>
         <!-- Navigation bar -->
-        <nav class="navbar">
-            <ul class="nav-list">
-                <li><a href="volunteering.html">Volunteering</a></li>
-                <li><a href="innerview.html">InnerView</a></li>
-                <li><a href="policies.html">Policies</a></li>
-                <li><a href="convention.html">Convention</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+        <nav class="navbar" id="topNav">
+            <div id="hamburger"><a href="javascript:void(0);" onclick="showNavbarList()" id="hamburgerButton">&equiv;</a></div>
+            <ul class="nav-list" id="topNavList">
+                <li><a href="#volunteering">Volunteering</a></li>
+                <li><a href="#innerview">InnerView</a></li>
+                <li><a href="#policies">Policies</a></li>
+                <li><a href="#convention">Convention</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </div>
-
-    <!-- Carousel and newsletter -->
-    <div class="content">
-    <div class="carousel_container">
-        Carousel goes here!
+    <!-- main content -->
+    <div id="content_wrapper"></div>
+    <!-- end main content -->
+    <!-- error explainer -->
+    <div id="pageError">
+        <h1>Sorry!</h1>
+        <p id="pageErrorExplanation">
+            The page you requested failed to load. <br />
+            Please check your Internet connection and try again.
+        </p>
     </div>
-    <h1>Catawba Ridge Beta</h1>
-    <p>Welcome to the CRHS Beta website! Under construction</p>
-    </div>
+    <!-- end error explainer -->
+    <script src="spa.js"></script>
 </body>
 </html>

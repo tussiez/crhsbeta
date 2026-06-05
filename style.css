@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Alata&family=Alegreya:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 
 
-
 body, html {
     font-family: "EB Garamond", sans-serif;
     font-size: 20px;
@@ -11,6 +10,14 @@ body, html {
     padding: 0;
     height: 100%;
     width: 100%;
+}
+
+
+#content_wrapper {
+    height: calc(100% - 200px);
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .content {
@@ -36,7 +43,7 @@ body, html {
     background-image: url("resources/images/sitebanner_repeat.png");
     background-size: auto 150px;
     background-repeat: repeat-x;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 #sitebanner {
@@ -57,7 +64,6 @@ body, html {
     transition: 0.4s;
 }
 
-
 #crlogoouter {
     position: absolute;
     right: 10px;
@@ -69,12 +75,10 @@ body, html {
     width: 125px;
 }
 
-
-
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     background: #333;
     background-blend-mode: darken;
     background-size: cover;
@@ -89,6 +93,7 @@ body, html {
 .nav-list {
     display: flex;
     list-style: none;
+    transition: 0.2s ease-in-out;
 }
 
 .nav-list li {
@@ -103,7 +108,7 @@ body, html {
     transition: color 0.15s ease-in-out;
 }
 
-.nav-list li a:hover, .nav-list li a.curr {
+.nav-list li a:hover, .nav-list li a.curr, #hamburger a:hover {
     color: #ffd700;
 }
 
@@ -111,10 +116,29 @@ a.curr {
     pointer-events: none;
 }
 
+#hamburger {
+    display: none;
+    font-size: 36px;
+    transition: color 0.15s ease-in-out;
+    margin-right: auto;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+#hamburger a {
+    text-decoration: none;
+    color: white;
+}
+
 #innerviewframe {
-    height: calc(100% - 96px);
+    height: 100%;
     width: 100%;
     border: none;
+}
+
+#pageError {
+    display: flex;
+    margin: auto;
 }
 
 @media only screen and (max-width: 960px) {
@@ -128,11 +152,33 @@ a.curr {
         opacity: 0;
     }
     .navbar {
-        justify-content: center;
+        height: auto;
+        flex-direction: column;
+    }
+    .nav-list {
+        flex-direction: column;
+        position: fixed;
+        left: -100%;
+        width: 100%;
+        top: 200px;
+        padding: 0px;
+        background-color: #333;
+        overflow-y: auto;
+        max-height: calc(100% - 200px);
+    }
+    .nav-list.shown {
+        left: 0%;
+    }
+    .nav-list li {
+        margin: 20px 30px 30px 30px;
+    }
+    #hamburger {
+        display: flex;
+        margin-left: 25px;
     }
 }
 
-@media only screen and (max-width: 1400px) and (min-width: 960px) {
+@media only screen and (max-width: 1600px) and (min-width: 960px) {
     #sitelogo {
         left: calc(100% - 270px);
     }
