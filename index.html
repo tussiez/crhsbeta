@@ -7,6 +7,12 @@
     <meta name="author" content="Catawba Ridge HS Beta">
     <meta name="keywords" content="Beta, Volunteer, High School">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="CR Beta" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>CRHS Beta</title>
 </head>
 <body>
@@ -15,12 +21,14 @@
         <!-- Logos -->
         <div id="topheader">
                 <img src="resources/images/sitebanner_logo.png" id="sitebanner">
-                <a href="#"><img src="resources/images/sitelogo.png" id="sitelogo"></a>
+                <!-- when a club logo / shield is designed, replace the sitelogo.png image file with it -->
+                <a href="#" title="Home"><img src="resources/images/sitelogo.png" id="sitelogo"></a>
+                <a href="#" id="title_home"><div id="home-clickable"></div></a>
             
-            <a href="https://crhs.fortmillschools.org" target="_blank" id="crlogoouter"><img src="resources/images/crlogo.png" id="crlogo"></a>
+            <a href="https://crhs.fortmillschools.org" target="_blank" id="crlogoouter" title="CRHS official site"><img src="resources/images/crlogo.png" id="crlogo"></a>
         </div>
         <!-- Navigation bar -->
-        <nav class="navbar" id="topNav">
+        <nav class="navbar centered-items" id="topNav">
             <div id="hamburger"><a href="javascript:void(0);" onclick="showNavbarList()" id="hamburgerButton">&equiv;</a></div>
             <ul class="nav-list" id="topNavList">
                 <li><a href="#volunteering">Volunteering</a></li>
@@ -31,6 +39,14 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <div id="announcement-banner">
+            Get your hours in now - volunteer over the summer! <a href="javascript:void(0)" onclick="hideBanner()">X</a>
+        </div>
+        <div id="loading-bar-outer">
+            <div id="loading-bar-inner">
+            </div>
+        </div>
+
     </div>
     <!-- main content -->
     <div id="content_wrapper"></div>
@@ -44,6 +60,45 @@
         </p>
     </div>
     <!-- end error explainer -->
+    
+    <!-- Footer -->
+    <div id="footer">
+        <div id="footer-content">
+            <div id="footer-left" class="centered-items">
+                <div>
+                    <b>Beta Club HQ - Room D330</b><br>
+                    <span>1180 Fort Mill Parkway</span><br>
+                    <span>Fort Mill, SC 29715</span><br><br>
+                </div>
+            </div>
+            <div id="footer-center">
+                <img src="resources/images/sitelogo.png" height="150" width="123">
+            </div>
+            <div id="footer-right">
+                <b>Helpful Links</b>
+                <table>
+                    <tr>
+                        <td><a href="#volunteering">Volunteering</a></td>
+                        <td><a href="https://betaclub.org" target="_blank">National Beta</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#contact">Contact Us</a></td>
+                        <td><a href="https://support.betaclub.org/support/solutions/153000297080" target="_blank">Convention Handbook</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="footer-bottom">
+                <div class="centered-items">
+                    <a href="https://classroom.google.com/" target="_blank"><img src="resources/images/classroom.png" height="32" width="32"></a>
+                    <a href="https://instagram.com/crhs_beta/" target="_blank"><img src="resources/images/instagram.png" height="32" width="32"></a>
+                    <a href="https://my.innerview.org/" target="_blank"><img src="resources/images/innerview.png" height="32" width="32"></a>
+                </div>
+                <br>
+            <div id="footer-ending" title="v0002"><i>Let Us Lead by Serving Others</i></div><br>
+            </div>
+        </div>
+    </div>
+
     <script src="spa.js"></script>
 </body>
 </html>
