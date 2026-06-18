@@ -1,10 +1,42 @@
 <!-- the homepage -->
-<style>
-    #title_home {
-        pointer-events: none; /* makes the title of website unclickable on home page (already on home) */
-    }
-</style>
+<link rel="stylesheet" href="styles/homepage.css">
+
+<div class="opportunities-wrapper">
+    <div class="opportunity">
+        <div class="opportunity-content">
+            <div>
+                <span class="opportunity-title">Second Saturday Littersweep</span> <br>
+                <span class="opportunity-details">Saturday, July 11 &nbsp;&bull;&nbsp; 9 am - 12 pm &nbsp;&bull;&nbsp;<a href="https://www.google.com/maps/search/?api=1&query=1234%20Springfield%20Pkwy,%20Fort%20Mill,%20SC" target="_blank">1234 Springfield Pkwy, Fort Mill, SC</a></span>
+                <br>
+                <span class="opportunity-description">Help clean up litter in our community! <br>Volunteers will pick up trash along Springfield Parkway. See SignUpGenius for more info.</span>
+            </div>
+            <div class="opportunity-bottom">
+                <button onclick="signUp()" class="opportunity-button">Sign Up</button><span class="opportunity-hours"><img src="resources/images/clock.svg" height="16" width="16"> 3 service hours</span>
+            </div>
+        </div>
+            <div class="opportunity-image" style="background-image: url('resources/service-opportunities/DSC_0421.JPG')" onclick="photoViewerToggle(this.style.backgroundImage)">
+            </div>
+    </div>
+    <div class="opportunity">
+        <div class="opportunity-content">
+            <div>
+                <span class="opportunity-title">II Saturday Littersweep</span> <br>
+                <span class="opportunity-details">Saturday, July 11 &nbsp;&bull;&nbsp; 9 am - 12 pm &nbsp;&bull;&nbsp; 1234 Springfield Pkwy, Fort Mill, SC</span>
+                <br>
+                <span class="opportunity-description">Help clean up litter in our community! <br>Volunteers will pick up trash along Springfield Parkway. See SignUpGenius for more info.</span>
+            </div>
+            <div class="opportunity-bottom">
+                <button onclick="signUp()" class="opportunity-button">Sign Up</button><span class="opportunity-hours"><img src="resources/images/clock.svg" height="16" width="16"> 3 service hours</span>
+            </div>
+        </div>
+            <div class="opportunity-image" style="background-image: url('resources/service-opportunities/DSC_0421.JPG')" onclick="photoViewerToggle(this.style.backgroundImage)">
+            </div>
+    </div>
+</div>
+
 <div class="content">
     <h1>Welcome!</h1>
     <p>Under construction.</p>
 </div>
+
+<script src="scripts/homepage.js"></script>

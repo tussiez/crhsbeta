@@ -6,7 +6,7 @@
     <meta name="description" content="Catawba Ridge High School Beta website">
     <meta name="author" content="Catawba Ridge HS Beta">
     <meta name="keywords" content="Beta, Volunteer, High School">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/mainstyle.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -15,7 +15,10 @@
     <link rel="manifest" href="/site.webmanifest" />
     <title>CRHS Beta</title>
 </head>
-<body>
+<body>        
+    <div id="loading-bar-outer">
+        <div id="loading-bar-inner"></div>
+    </div>
     <!-- Header content -->
     <div id="header">
         <!-- Logos -->
@@ -42,12 +45,15 @@
         <div id="announcement-banner">
             Get your hours in now - volunteer over the summer! <a href="javascript:void(0)" onclick="hideBanner()">X</a>
         </div>
-        <div id="loading-bar-outer">
-            <div id="loading-bar-inner">
-            </div>
-        </div>
+
 
     </div>
+
+    <div id="photo-viewer-wrapper">
+        <button onclick="photoViewerToggle()" class="photo-viewer-close">X</button>
+        <div id="photo-viewer"></div>
+    </div>
+
     <!-- main content -->
     <div id="content_wrapper"></div>
     <!-- end main content -->
@@ -55,8 +61,6 @@
     <div id="pageError">
         <h1>Sorry!</h1>
         <p id="pageErrorExplanation">
-            The page you requested failed to load. <br />
-            Please check your Internet connection and try again.
         </p>
     </div>
     <!-- end error explainer -->
@@ -99,6 +103,6 @@
         </div>
     </div>
 
-    <script src="spa.js"></script>
+    <script src="scripts/spa.js"></script>
 </body>
 </html>

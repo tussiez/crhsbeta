@@ -1,0 +1,135 @@
+#title_home {
+    pointer-events: none; /* makes the title of website unclickable on home page (already on home) */
+}
+
+.opportunities-wrapper {
+    display: block;
+    height: 400px;
+    width: calc(100% - 12px);
+    background-color: darkgoldenrod;
+    padding: 6px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.opportunity {
+    display: flex;
+    align-items: left;
+    justify-content: flex-start;
+    height: 370px;
+    width: calc(100% - 32px);
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 4px rgba(0,0,0, 0.5);
+}
+
+.opportunity-content {
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 20px);
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+.opportunity-image {
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    cursor: zoom-in;
+}
+
+.opportunity-title {
+    font-family: "Instrument Serif", sans-serif;
+    font-size: 48px;
+}
+
+.opportunity-details {
+    font-family: "Instrument Serif", sans-serif;
+    font-size: 24px;
+    color: #222;
+}
+
+.opportunity-description {
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 18px;
+}
+
+.opportunity-bottom {
+    width: 100%;
+    align-self: flex-end;
+    flex-direction: row;
+}
+
+.opportunity-hours {
+    color: gray;
+    font-size: 24px;
+    float: right;
+    margin-top: 12px;
+    margin-right: 6px;
+}
+
+.opportunity-button {
+    background-color: gold;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px;
+    font-size: 32px;
+    font-family: "Alegreya", sans-serif;
+    padding: 4px 16px 4px 16px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    color: black;
+}
+
+.opportunity-button:hover {
+    background-color: #ffe369;
+}
+
+@media only screen and (max-width: 700px) {
+    .opportunities-wrapper {
+        scrollbar-width: auto;
+    }
+
+    .opportunity-content {
+        width: 100%;
+    }
+
+    .opportunity-image {
+        width: 100%;
+        height: 100px;
+    }
+
+    .opportunity {
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .opportunity-title {
+        font-size: 32px;
+    }
+
+    .opportunity-details {
+        font-size: 18px;
+    }
+
+    .opportunity-description {
+        font-size: 16px;
+    }
+
+    .opportunity-button {
+        margin-top: 8px;
+        font-size: 24px;
+    }
+
+    .opportunity-hours {
+        margin-right: 12px;
+    }
+}

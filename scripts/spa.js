@@ -12,10 +12,12 @@ const pageErrorExplanation = document.getElementById("pageErrorExplanation");
 const navbarLinks = document.querySelectorAll("#topNavList li a")
 const hamburgerButton = document.getElementById("hamburgerButton");
 const topNavList = document.getElementById("topNavList");
-const loadingBarInner = document.getElementById("loading-bar-inner");
+const loadingBar = document.getElementById("loading-bar-inner");
+const photoViewerWrapper = document.getElementById("photo-viewer-wrapper");
+const photoViewer = document.getElementById("photo-viewer");
 
 function loadContent(pageURL, theHash) {
-    loadingBarInner.style.display = 'block';
+    loadingBar.style.display = 'block';
     fetch(pageURL)
         .then(response => {
             if (!response.ok) {
@@ -23,7 +25,7 @@ function loadContent(pageURL, theHash) {
                 contentWrapper.innerHTML = '';
                 pageError.style.display = 'block';
                 pageError.innerHTML = 'The page you requested failed to load.';
-                loadingBarInner.style.display = 'none';
+                loadingBar.style.display = 'none';
                 console.error(response)
             }
             return response.text();
@@ -31,7 +33,7 @@ function loadContent(pageURL, theHash) {
         .then(data => {
             contentWrapper.innerHTML = data;
             pageError.style.display = 'none';
-            loadingBarInner.style.display = 'none';
+            loadingBar.style.display = 'none';
             updateNavbar(theHash);
             showNavbarList(true);
             window.scrollTo(0,0);
@@ -41,7 +43,7 @@ function loadContent(pageURL, theHash) {
             contentWrapper.innerHTML = '';
             pageError.style.display = 'block';
             pageErrorExplanation.innerHTML = 'The page you requested failed to load. <br /> An internal error occurred.';
-            loadingBarInner.style.display = 'none';
+            loadingBar.style.display = 'none';
         })
 }
 
@@ -81,3 +83,22 @@ function showNavbarList(forceClose = false) {
 function hideBanner() {
     document.getElementById("announcement-banner").style.display = 'none';
 }
+
+function photoViewerToggle(url) {
+    if(!url) {
+        photoViewerWrapper.classList.add('fade');
+        setTimeout(() => {
+            photoViewerWrapper.classList.remove('fade');
+            photoViewerWrapper.style.display = 'none';
+        }, 160);
+    } else {
+        photoViewerWrapper.classList.add('fade');
+        photoViewerWrapper.style.display = 'block';
+        photoViewer.style.backgroundImage = url;
+        setTimeout(() => {
+            photoViewerWrapper.classList.remove('fade');
+        }, 160);
+    }
+}
+
+// encodeURI
