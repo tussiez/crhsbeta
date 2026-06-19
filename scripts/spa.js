@@ -34,6 +34,7 @@ function loadContent(pageURL, theHash) {
             contentWrapper.innerHTML = data;
             pageError.style.display = 'none';
             loadingBar.style.display = 'none';
+            executeScriptElements();
             updateNavbar(theHash);
             showNavbarList(true);
             window.scrollTo(0,0);
@@ -67,6 +68,21 @@ function updatePage() {
 
 window.addEventListener('hashchange', updatePage);
 window.addEventListener('load', updatePage);
+
+// because <script> tags are not executed in innerHTML insertions, iterate over each tag and clone the <script> locally so it is run
+// adopted from Johannes Ewald's solution: https://stackoverflow.com/a/69190644
+function executeScriptElements() {
+    const scriptElements = contentWrapper.querySelectorAll("script");
+
+    scriptElements.forEach((scriptElement) => {
+        const clonedElement = document.createElement("script");
+        Array.from(scriptElement.attributes).forEach((attribute) => {
+            clonedElement.setAttribute(attribute.name, attribute.value);
+        });
+        clonedElement.text = scriptElement.text;
+        scriptElement.parentNode.replaceChild(clonedElement, scriptElement);
+    });
+}
 
 
 function showNavbarList(forceClose = false) {
