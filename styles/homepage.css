@@ -2,18 +2,50 @@
     pointer-events: none; /* makes the title of website unclickable on home page (already on home) */
 }
 
+.opportunity-progress-outer {
+    height: 24px;
+    width: calc(100% - 16px);
+    overflow: hidden;
+    display: block;
+    background-color: darkgoldenrod;
+    padding: 4px 8px 6px 8px;
+}
+
+#opportunity-progress {
+    width: 100%;
+    height: 100%;
+    background-color: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 8px;
+}
+
+.opportunity-jumpto {
+    background-color: rgba(0,0,0,0.25);
+    height: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 4px;
+}
+
+.current {
+    background-color: rgba(0,0,0,0.5);
+}
+
 .opportunities-wrapper {
     display: block;
     height: 400px;
     width: calc(100% - 12px);
     background-color: darkgoldenrod;
     padding: 6px;
-    overflow-y: scroll;
+    overflow: hidden;
     scrollbar-width: none;
+    scroll-behavior: smooth;
+    white-space: nowrap;
 }
 
 .opportunity {
-    display: flex;
+    display: inline-flex;
     align-items: left;
     justify-content: flex-start;
     height: 370px;
@@ -23,8 +55,9 @@
     padding: 10px;
     margin-top: 5px;
     margin-left: 5px;
-    margin-bottom: 15px;
+    margin-right: 15px;
     box-shadow: 2px 2px 4px rgba(0,0,0, 0.5);
+    white-space: wrap;
 }
 
 .opportunity-content {
@@ -55,6 +88,10 @@
     font-family: "Instrument Serif", sans-serif;
     font-size: 24px;
     color: #222;
+}
+
+.opportunity-details a {
+    color: black;
 }
 
 .opportunity-description {

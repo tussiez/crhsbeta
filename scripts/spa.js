@@ -3,7 +3,7 @@
  * SPA = single-page app
  * Author: Titus Ramsarran
  * Purpose: Dynamically load content and some UI functionality
- * 6/4/26
+ * 6/19/26
 **/
 
 const contentWrapper = document.getElementById("content_wrapper");
@@ -16,8 +16,11 @@ const loadingBar = document.getElementById("loading-bar-inner");
 const photoViewerWrapper = document.getElementById("photo-viewer-wrapper");
 const photoViewer = document.getElementById("photo-viewer");
 
+let pageScript = null;
+
 function loadContent(pageURL, theHash) {
     loadingBar.style.display = 'block';
+    pageScript = null; // clean out page-specific loaded scripts
     fetch(pageURL)
         .then(response => {
             if (!response.ok) {
