@@ -1,0 +1,1 @@
+python3 -m http.server -d ~/Documents/GitHub/crhsbeta 8000
