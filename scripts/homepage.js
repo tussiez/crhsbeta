@@ -56,15 +56,23 @@ function homepageApp() {
         }
     }
 
+    this.handleWindowChange = function() {
+            scope.scrollToOpportunity(scope.currentOpportunity, true);
+    }
+
     this.run = function() {
         scope.timestamp = performance.now();
         scope.running = true;
         scope.opportunityProgress.style.gridTemplateColumns = `repeat(${scope.numOpportunities}, 1fr)`;
         scope.generateJumpTo();
-        window.addEventListener('resize', () => {
-            scope.scrollToOpportunity(scope.currentOpportunity, true);
-        });
+        window.addEventListener('resize', scope.handleWindowChange);
+        screen.orientation.addEventListener('change', scope.handleWindowChange);
         requestAnimationFrame(scope.autoscrollOpportunities);
+    }
+
+    this.unload = function() {
+        window.removeEventListener('resize', scope.handleWindowChange);
+        screen.orientation.removeEventListener('change', scope.handleWindowChange);
     }
 }
 
