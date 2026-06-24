@@ -2,7 +2,7 @@
     pointer-events: none; /* makes the title of website unclickable on home page (already on home) */
 }
 
-.opportunity-progress-outer {
+.opportunity-selector-outer {
     height: 24px;
     width: calc(100% - 16px);
     overflow: hidden;
@@ -11,7 +11,7 @@
     padding: 4px 8px 6px 8px;
 }
 
-#opportunity-progress {
+#opportunity-selector {
     width: 100%;
     height: 100%;
     background-color: none;
@@ -28,7 +28,11 @@
     border-radius: 4px;
 }
 
-.current {
+.opportunity-jumpto:hover {
+    background-color: rgba(0,0,0,0.35);
+}
+
+.current, .current:hover {
     background-color: rgba(0,0,0,0.5);
 }
 
@@ -46,7 +50,6 @@
 
 .opportunity {
     display: inline-flex;
-    align-items: left;
     justify-content: flex-start;
     height: 370px;
     width: calc(100% - 32px);
@@ -56,8 +59,11 @@
     margin-top: 5px;
     margin-left: 5px;
     margin-right: 15px;
-    box-shadow: 2px 2px 4px rgba(0,0,0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0,0,0, 0.25);
     white-space: wrap;
+    transition: opacity 1.5s;
+    position: absolute;
+    left: 0;
 }
 
 .opportunity-content {

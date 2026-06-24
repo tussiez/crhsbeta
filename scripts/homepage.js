@@ -1,7 +1,7 @@
 
 function homepageApp() {
     this.opportunityDiv = document.querySelector(".opportunities-wrapper");
-    this.opportunityProgress = document.getElementById("opportunity-progress");
+    this.opportunitySelectors = document.getElementById("opportunity-selector");
     this.numOpportunities = this.opportunityDiv.childElementCount;
     this.timestamp = 0;
     this.currentOpportunity = 0;
@@ -9,32 +9,43 @@ function homepageApp() {
     this.scrollSpeed = 10000; // milliseconds
     let scope = this;
 
-    this.autoscrollOpportunities = function() {
+    this.slideshowOpportunities = function() {
         let nowTime = performance.now();
 
+        if(scope.opportunityDiv.matches(':hover')) scope.timestamp = nowTime;
+
         if (nowTime - scope.timestamp > scope.scrollSpeed) {
-            if (scope.currentOpportunity < scope.numOpportunities - 1) {
+            if (scope.currentOpportunity < scope.numOpportunities - 2) {
                 scope.currentOpportunity++;
             } else {
                 scope.currentOpportunity = 0;
             }
-            scope.scrollToOpportunity(scope.currentOpportunity);
+            scope.presentOpportunity(scope.currentOpportunity);
         }
 
-        if(scope.running) requestAnimationFrame(scope.autoscrollOpportunities);
+        if(scope.running) requestAnimationFrame(scope.slideshowOpportunities);
     }
 
-    this.scrollToOpportunity = function(numOpp, resizeMode = false) {
-        scope.opportunityDiv.scrollTo({
-            left: scope.opportunityDiv.offsetWidth * numOpp,
-            top: 0,
-            behavior: resizeMode == false ? 'smooth' : 'instant'
-        });
-        for(const ele of scope.opportunityProgress.children) {
+    this.presentOpportunity = function(numOpp) {
+        for(const ele of scope.opportunitySelectors.children) {
             if (ele.idxValue == numOpp) {
                 ele.classList.add('current');
             } else {
                 ele.classList.remove('current');
+            }
+        }
+        for(const opp of scope.opportunityDiv.children) {
+            const idxValue = opp.getAttribute('idxValue');
+            if(idxValue != '-1') {
+                if(idxValue == numOpp.toString()) {
+                    opp.classList.add('fadeIn');
+                    opp.classList.remove('fade');
+                    opp.style.zIndex = '10';
+                } else {
+                    opp.classList.remove('fadeIn');
+                    opp.classList.add('fade');
+                    opp.style.zIndex = '1';
+                }
             }
         }
         scope.timestamp = performance.now();
@@ -42,38 +53,28 @@ function homepageApp() {
     }
     
     this.generateJumpTo = function() {
-        for(let i = 0; i < scope.numOpportunities; i++) {
+        for(let i = 0; i < scope.numOpportunities - 1; i++) { // subtracting 1 to remove dummy opp.
             let theButton = document.createElement('div');
             theButton.classList.add('opportunity-jumpto');
             theButton.onclick = () => {
-                scope.scrollToOpportunity(i);
+                scope.presentOpportunity(i);
             }
             if(i == 0) {
                 theButton.classList.add('current');
             }
             theButton.idxValue = i;
-            scope.opportunityProgress.appendChild(theButton);
+            scope.opportunitySelectors.appendChild(theButton);
         }
-    }
-
-    this.handleWindowChange = function() {
-            scope.scrollToOpportunity(scope.currentOpportunity, true);
     }
 
     this.run = function() {
         scope.timestamp = performance.now();
         scope.running = true;
-        scope.opportunityProgress.style.gridTemplateColumns = `repeat(${scope.numOpportunities}, 1fr)`;
+        scope.opportunitySelectors.style.gridTemplateColumns = `repeat(${scope.numOpportunities - 1}, 1fr)`;
         scope.generateJumpTo();
-        window.addEventListener('resize', scope.handleWindowChange);
-        screen.orientation.addEventListener('change', scope.handleWindowChange);
-        requestAnimationFrame(scope.autoscrollOpportunities);
+        requestAnimationFrame(scope.slideshowOpportunities);
     }
 
-    this.unload = function() {
-        window.removeEventListener('resize', scope.handleWindowChange);
-        screen.orientation.removeEventListener('change', scope.handleWindowChange);
-    }
 }
 
 pageScript = new homepageApp();

@@ -156,6 +156,7 @@ body, html {
     display: flex;
     list-style: none;
     transition: 0.2s ease-in-out;
+    z-index: 999;
 }
 
 .nav-list li {
@@ -330,7 +331,13 @@ a.curr {
 
 .fade {
     opacity: 0;
+    pointer-events: none;
 }
+
+.fadeIn {
+    opacity: 1;
+}
+
 
 @media only screen and (max-width: 960px) {
     #crlogoouter {
