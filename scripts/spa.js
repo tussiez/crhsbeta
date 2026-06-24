@@ -17,6 +17,27 @@ const photoViewerWrapper = document.getElementById("photo-viewer-wrapper");
 const photoViewer = document.getElementById("photo-viewer");
 
 let pageScript = null;
+let content = undefined;
+
+function loadData() {
+    fetch('data.json')
+        .then(response => {
+            if(!response.ok) {
+                console.error(response);
+                // failure to load json
+            }
+            return response.json();
+        })
+        .then(data => {
+            // got the json output?
+            content = data;
+            console.log(data);
+        })
+        .catch(err => {
+            console.error(err);
+            // failure to load json
+        });
+}
 
 function loadContent(pageURL, theHash) {
     loadingBar.style.display = 'block';
@@ -70,7 +91,10 @@ function updatePage() {
 }
 
 window.addEventListener('hashchange', updatePage);
-window.addEventListener('load', updatePage);
+window.addEventListener('load', () => {
+    updatePage();
+    loadData();
+});
 
 // because <script> tags are not executed in innerHTML insertions, iterate over each tag and clone the <script> locally so it is run
 // adopted from Johannes Ewald's solution: https://stackoverflow.com/a/69190644

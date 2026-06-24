@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "timestamp": "Wed Jun 24 2026 3:20 AM",
+    "news": {
+        "announcement": "Get your hours in now - volunteer over the summer!",
+        "newsletter": {
+            "title": "Welcome to the Beta Site!",
+            "body": "This is the new Beta Site. Take a look around!",
+            "author": "Amaya Barrett",
+            "image": "resources/service_opportunities/DSC_0421.JPG"
+        },
+        "bt4e": {
+            "title": "Environment",
+            "body": "Help support the environment",
+            "author": "Viviane Tran",
+            "image": "resources/service_opportunities/DSC_0421.JPG"
+        }
+    },
+    "datesToKnow": [
+        {
+            "title": "New Invite Meeting",
+            "date": "August 23, 2026",
+            "time": "Flex",
+            "description": "New members, head to the auditorium during Flex to learn about Beta."
+        },
+        {
+            "title": "Beta Induction",
+            "date": "September 16, 2026",
+            "time": "6:30 PM",
+            "description": "All new Betas attend the Beta Induction Ceremony!"
+        }
+    ],
+    "oppoortunities": [
+        {
+            "title": "Second Saturday Littersweep",
+            "date": "Saturday, July 11",
+            "time": "9 am - 12 pm",
+            "address": "1234 Springfield Pkwy, Fort Mill, SC",
+            "description": "Help clean up litter in our community! \n Volunteers will pick up trash along Springfield Parkway. See SignUpGenius for more info.",
+            "hours": "3 service hours",
+            "innerview": "https://my.innerview.org/",
+            "image": "resources/service-opportunities/DSC_0421.JPG"
+        },
+        {
+            "title": "Toiletries Drive",
+            "date": "Ends July 31",
+            "time": "",
+            "address": "Drop off in room D330",
+            "description": "Help support those in need! Donate toothbrushes, hair care products, soap, etc.",
+            "hours": "$15 = 1 hour",
+            "innerview": "https://my.innerview.org/",
+            "image": "resources/service-opportunities/DSC_0421.JPG"
+        }
+    ] 
+}
