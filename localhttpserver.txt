@@ -1,2 +1,0 @@
-# command to start a local python server (for development purposes)
-py -m http.server 8000

@@ -156,7 +156,7 @@ body, html {
     display: flex;
     list-style: none;
     transition: 0.2s ease-in-out;
-    z-index: 999;
+    z-index: 100;
 }
 
 .nav-list li {
