@@ -6,6 +6,8 @@
  * 6/19/26
 **/
 
+
+// Get page elements
 const contentWrapper = document.getElementById("content_wrapper");
 const pageError = document.getElementById("pageError");
 const pageErrorExplanation = document.getElementById("pageErrorExplanation");
@@ -16,9 +18,13 @@ const loadingBar = document.getElementById("loading-bar-inner");
 const photoViewerWrapper = document.getElementById("photo-viewer-wrapper");
 const photoViewer = document.getElementById("photo-viewer");
 
-let pageScript = null;
-let content = undefined;
+// Store loaded JSON
+let content = null;
 
+// Store the JavaScript of the loaded page (i.e. homepage script)
+let pageScript = null;
+
+// Load the website JSON content (volunteer opportunities, updates, etc.)
 function loadData() {
     fetch('data.json')
         .then(response => {
@@ -28,20 +34,24 @@ function loadData() {
             }
             return response.json();
         })
-        .then(data => {
-            // got the json output?
-            content = data;
-            console.log(data);
-        })
+        .then(processJSONContent)
         .catch(err => {
             console.error(err);
             // failure to load json
         });
 }
 
+// Process the JSON file
+function processJSONContent(data) {
+    content = data;
+    document.getElementById("footer-ending").title = `v${content.version} - ${content.timestamp}`;
+    document.getElementById("announcement").innerText = content.news.announcement;
+}
+
+// Single-page-app: load the requested page into the current page, between the header & footer
 function loadContent(pageURL, theHash) {
     loadingBar.style.display = 'block';
-    pageScript = null; // clean out page-specific loaded scripts
+    pageScript = null; // this cleans out page-specific loaded scripts
     fetch(pageURL)
         .then(response => {
             if (!response.ok) {
@@ -54,7 +64,7 @@ function loadContent(pageURL, theHash) {
             }
             return response.text();
         })
-        .then(data => {
+        .then(data => { // The page file was loaded
             contentWrapper.innerHTML = data;
             pageError.style.display = 'none';
             loadingBar.style.display = 'none';
@@ -72,6 +82,7 @@ function loadContent(pageURL, theHash) {
         })
 }
 
+// Highlight the current page label in the navigation bar
 function updateNavbar(theHash) {
     for(const a of navbarLinks) {
         a.classList.remove("curr");
@@ -81,6 +92,7 @@ function updateNavbar(theHash) {
     }
 }
 
+// Detect the requested page and load it
 function updatePage() {
     const theHash = window.location.hash;
     let theURL = theHash.slice(1) + '.html';
@@ -90,10 +102,10 @@ function updatePage() {
     loadContent(theURL, theHash);
 }
 
-window.addEventListener('hashchange', updatePage);
+window.addEventListener('hashchange', updatePage); // when the URL past the # gets changed
 window.addEventListener('load', () => {
-    updatePage();
-    loadData();
+    updatePage(); // this loads the homepage
+    loadData(); // this loads the JSON data when the page is ready
 });
 
 // because <script> tags are not executed in innerHTML insertions, iterate over each tag and clone the <script> locally so it is run
@@ -111,33 +123,35 @@ function executeScriptElements() {
     });
 }
 
-
+// Show-hide functionality for mobile navigation bar
 function showNavbarList(forceClose = false) {
     if(topNavList.classList.toggle("shown") == true && forceClose == false) {
         hamburgerButton.innerHTML = "<";
     } else {
-        if(forceClose == true) {
+        if(forceClose == true) { // when a new page gets loaded, close the dropdown navbar
             topNavList.classList.remove("shown");
         }
         hamburgerButton.innerHTML = "&equiv;"
     }
 }
 
+// Hide the announcement banner
 function hideBanner() {
     document.getElementById("announcement-banner").style.display = 'none';
 }
 
+// Photo viewer - click to show full image functionality
 function photoViewerToggle(url) {
-    if(!url) {
+    if(!url) { // if no URL, the close button was pressed
         photoViewerWrapper.classList.add('fade');
-        setTimeout(() => {
+        setTimeout(() => { // after the fade animation ends, stop displaying it completely
             photoViewerWrapper.classList.remove('fade');
             photoViewerWrapper.style.display = 'none';
         }, 160);
-    } else {
+    } else { // there's a URL sent to this function, it's the image being clicked
         photoViewerWrapper.classList.add('fade');
         photoViewerWrapper.style.display = 'block';
-        photoViewer.style.backgroundImage = url;
+        photoViewer.style.backgroundImage = `url('${url}')`;
         setTimeout(() => {
             photoViewerWrapper.classList.remove('fade');
         }, 160);

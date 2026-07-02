@@ -2,7 +2,7 @@
 function homepageApp() {
     this.opportunityDiv = document.querySelector(".opportunities-wrapper");
     this.opportunitySelectors = document.getElementById("opportunity-selector");
-    this.numOpportunities = this.opportunityDiv.childElementCount;
+    this.numOpportunities = 0;//this.opportunityDiv.childElementCount;
     this.timestamp = 0;
     this.currentOpportunity = 0;
     this.runnning = false;
@@ -15,7 +15,7 @@ function homepageApp() {
         if(scope.opportunityDiv.matches(':hover')) scope.timestamp = nowTime;
 
         if (nowTime - scope.timestamp > scope.scrollSpeed) {
-            if (scope.currentOpportunity < scope.numOpportunities - 2) {
+            if (scope.currentOpportunity < scope.numOpportunities - 1) {
                 scope.currentOpportunity++;
             } else {
                 scope.currentOpportunity = 0;
@@ -53,7 +53,7 @@ function homepageApp() {
     }
     
     this.generateJumpTo = function() {
-        for(let i = 0; i < scope.numOpportunities - 1; i++) { // subtracting 1 to remove dummy opp.
+        for(let i = 0; i < scope.numOpportunities; i++) {
             let theButton = document.createElement('div');
             theButton.classList.add('opportunity-jumpto');
             theButton.onclick = () => {
@@ -67,11 +67,91 @@ function homepageApp() {
         }
     }
 
+    this.processJSON = function(obj) {
+        obj.opportunities.forEach(scope.generateOpportunity);
+    }
+
+    this.generateOpportunity = function(opr) {
+        let outer = document.createElement("div");
+        scope.opportunityDiv.appendChild(outer);
+        outer.classList.add("opportunity");
+        if(scope.numOpportunities == 0) {
+            outer.classList.add("fadeIn");
+        } else {
+            outer.classList.add("fade");
+        }
+        outer.setAttribute("idxValue", scope.numOpportunities);
+        scope.numOpportunities++;
+
+        let innerContent = document.createElement("div");
+        innerContent.classList.add("opportunity-content");
+        outer.appendChild(innerContent);
+
+        let innerContentInner = document.createElement("div");
+        innerContent.appendChild(innerContentInner);
+
+        let opportunityTitle = document.createElement("span");
+        opportunityTitle.classList.add("opportunity-title");
+        opportunityTitle.innerText = opr.title;
+        innerContentInner.appendChild(opportunityTitle);
+        innerContentInner.appendChild(document.createElement('br'));
+
+        let opportunityDetails = document.createElement("span");
+        opportunityDetails.classList.add("opportunity-details");
+        opportunityDetails.innerHTML = `${opr.date}${opr.time != "" ? ' &nbsp;&bull;&nbsp; ' + opr.time : ''} &nbsp;&bull;&nbsp; `
+        if (opr.isStreetAddress) {
+            let opportunityAddress = document.createElement("a");
+            opportunityAddress.innerText = opr.location;
+            opportunityAddress.href = `https://www.google.com/maps/search/?api=1&query=${encodeURI(opr.location)}`;
+            opportunityAddress.target = '_blank';
+            opportunityDetails.appendChild(opportunityAddress);
+        } else {
+            opportunityDetails.innerText += opr.location;
+        }
+        innerContentInner.appendChild(opportunityDetails);
+        innerContentInner.appendChild(document.createElement('br'));
+        
+        let opportunityDescription = document.createElement("span");
+        opportunityDescription.classList.add("opportunity-description");
+        opportunityDescription.innerText = opr.description; // innerHTML
+        innerContentInner.appendChild(opportunityDescription);
+
+        let opportunityBottom = document.createElement("div");
+        opportunityBottom.classList.add("opportunity-bottom");
+        innerContent.appendChild(opportunityBottom);
+
+        let opportunityBottomButton = document.createElement("button");
+        opportunityBottomButton.setAttribute('onclick', `window.open('${opr.innerview}')`); // IF NO INNERVIEW LINK: display instructions to submit opportunity
+        opportunityBottomButton.classList.add("opportunity-button");
+        opportunityBottomButton.innerText = "Sign Up";
+        opportunityBottom.appendChild(opportunityBottomButton);
+
+        let opportunityBottomHours = document.createElement("span");
+        opportunityBottomHours.classList.add("opportunity-hours");
+        opportunityBottomHours.innerText = ' ' + opr.hours;
+        opportunityBottom.appendChild(opportunityBottomHours);
+
+        let opportunityBottomHoursIcon = document.createElement("img")
+        opportunityBottomHoursIcon.src = "resources/images/clock.svg";
+        opportunityBottomHoursIcon.height = 16;
+        opportunityBottomHoursIcon.width = 16;
+        opportunityBottomHours.prepend(opportunityBottomHoursIcon);
+
+        let opportunityImage = document.createElement("div");
+        opportunityImage.classList.add("opportunity-image");
+        opportunityImage.style.backgroundImage = `url(${opr.image})`;
+        opportunityImage.setAttribute('onclick', `photoViewerToggle('${opr.image}')`);
+
+        outer.appendChild(opportunityImage);
+    }
+
     this.run = function() {
         scope.timestamp = performance.now();
         scope.running = true;
-        scope.opportunitySelectors.style.gridTemplateColumns = `repeat(${scope.numOpportunities - 1}, 1fr)`;
+        scope.processJSON(content);
         scope.generateJumpTo();
+        scope.opportunitySelectors.style.gridTemplateColumns = `repeat(${scope.numOpportunities}, 1fr)`;
+
         requestAnimationFrame(scope.slideshowOpportunities);
     }
 
