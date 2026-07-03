@@ -188,6 +188,29 @@
     display: flex;
 }
 
+.dates-wrapper {
+    height: 400px;
+    width: 100%;
+    background-color: #444;
+    color: white;
+    text-align: center;
+    padding: 4px;
+}
+
+.dates-wrapper h1 {
+    font-family: "Instrument Serif";
+    font-size: 48px;
+}
+
+.important-date {
+    height: 300px;
+    width: 200px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+    background-color: white;
+    color: black;
+}
+
 @media only screen and (max-width: 768px) {
     .opportunities-wrapper {
         scrollbar-width: auto;
