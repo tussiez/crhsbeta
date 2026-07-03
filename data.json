@@ -5,9 +5,10 @@
         "announcement": "Get your hours in now - volunteer over the summer!",
         "newsletter": {
             "title": "Welcome to the Beta Site!",
-            "body": "This is the new Beta Site. Take a look around!",
-            "author": "Amaya Barrett",
-            "image": "resources/service_opportunities/DSC_0421.JPG"
+            "body": "This is the new Beta Site. <br> Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet",
+            "author": "Titus Ramsarran",
+            "date": "July 3, 2026",
+            "image": "resources/service-opportunities/DSC_0421.JPG"
         },
         "bt4e": {
             "title": "Environment",

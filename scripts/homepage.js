@@ -2,6 +2,10 @@
 function homepageApp() {
     this.opportunityDiv = document.querySelector(".opportunities-wrapper");
     this.opportunitySelectors = document.getElementById("opportunity-selector");
+    this.newsTitle = document.querySelector(".news-title");
+    this.newsDate = document.querySelector(".news-date");
+    this.newsBody = document.querySelector(".news-body");
+    this.newsImage = document.querySelector(".news-image");
     this.numOpportunities = 0;//this.opportunityDiv.childElementCount;
     this.timestamp = 0;
     this.currentOpportunity = 0;
@@ -69,6 +73,14 @@ function homepageApp() {
 
     this.processJSON = function(obj) {
         obj.opportunities.forEach(scope.generateOpportunity);
+        scope.generateNewsletter(obj.news.newsletter);
+    }
+
+    this.generateNewsletter = function(nsl) {
+        scope.newsImage.style.backgroundImage = `url('${nsl.image}')`;
+        scope.newsDate.innerHTML = `${nsl.author} &nbsp;&bull;&nbsp; ${nsl.date}`
+        scope.newsTitle.innerText = nsl.title;
+        scope.newsBody.innerHTML = nsl.body;
     }
 
     this.generateOpportunity = function(opr) {

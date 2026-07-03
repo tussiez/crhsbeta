@@ -46,12 +46,14 @@
     scrollbar-width: none;
     scroll-behavior: smooth;
     white-space: nowrap;
+    overflow-y: auto;
 }
 
 .opportunity {
-    display: inline-flex;
+    display: flex;
     justify-content: flex-start;
     height: 370px;
+    max-height: 370px;
     width: calc(100% - 32px);
     background-color: white;
     border-radius: 8px;
@@ -64,6 +66,9 @@
     transition: opacity 1.5s;
     position: absolute;
     left: 0;
+    line-height: 1.6;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .opportunity-content {
@@ -88,6 +93,7 @@
 .opportunity-title {
     font-family: "Instrument Serif", sans-serif;
     font-size: 48px;
+    line-height: 1.4;
 }
 
 .opportunity-details {
@@ -136,7 +142,53 @@
     background-color: #ffe369;
 }
 
-@media only screen and (max-width: 700px) {
+.news {
+    display: flow-root;
+    width: calc(100% - 18px);
+    min-height: 400px;
+    margin: 4px;
+    padding: 4px;
+    box-shadow: 0px 0px 6px rgba(0,0,0, 0.3);
+    background-color: rgb(240,240,240);
+    border-radius: 4px;
+    line-height: 1.6;
+}
+
+.news-content {
+    padding: 6px;
+    margin: 6px;
+    font-size: 20px;
+}
+
+.news-content::after { /* clearfix */
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.news-title {
+    font-family: "Alata";
+    font-size: 40px;
+}
+
+.news-date {
+    font-family: "Instrument Serif";
+    font-size: 20px;
+}
+
+.news-image {
+    height: 400px;
+    width: 400px;
+    margin: 6px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+    background-size: cover;
+    background-position: center;
+    float: right;
+    display: flex;
+}
+
+@media only screen and (max-width: 768px) {
     .opportunities-wrapper {
         scrollbar-width: auto;
     }
@@ -174,5 +226,31 @@
 
     .opportunity-hours {
         margin-right: 12px;
+    }
+    
+    .news-content {
+        margin-left: 16px;
+    }
+
+    .news-image {
+        width: 100%;
+    }
+}
+
+@media (min-aspect-ratio: 2/1) and (min-width: 3440px) {
+    .opportunity {
+        width: 75%;
+        left: 12.5%;
+    }
+    #opportunity-selector {
+        width: calc(75% + 28px);
+        left: 12.5%;
+        height: 24px;
+        position: relative;
+    }
+    .news {
+        width: 75%;
+        left: 12.5%;
+        position: relative;
     }
 }
