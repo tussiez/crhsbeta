@@ -49,9 +49,20 @@
 
     </div>
 
-    <div id="photo-viewer-wrapper">
-        <button onclick="photoViewerToggle()" class="photo-viewer-close">X</button>
+    <div id="photo-viewer-wrapper" class="overlay-wrapper">
+        <div class="behind-close" onclick="photoViewerToggle()"></div>
+        <button onclick="photoViewerToggle()" class="overlay-close">X</button>
         <div id="photo-viewer"></div>
+    </div>
+
+    <div id="details-window-wrapper" class="overlay-wrapper">
+        <div class="behind-close" onclick="detailsWindowToggle()"></div>
+        <div class="centered-items" id="details-flexbox">
+            <button onclick="detailsWindowToggle()" class="overlay-close">X</button>
+            <div id="details-window">
+                <div class="content" style="text-align: center"></div>
+            </div>
+        </div>
     </div>
 
     <!-- main content -->

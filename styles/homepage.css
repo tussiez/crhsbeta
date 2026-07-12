@@ -148,10 +148,14 @@
     min-height: 400px;
     margin: 4px;
     padding: 4px;
-    box-shadow: 0px 0px 6px rgba(0,0,0, 0.3);
+    box-shadow: 0px 0px 6px rgba(0,0,0, 0.2);
     background-color: rgb(240,240,240);
     border-radius: 4px;
     line-height: 1.6;
+}
+
+.secondsegment {
+    background-color: #ebf5fc;
 }
 
 .news-content {
@@ -189,8 +193,8 @@
 }
 
 .dates-wrapper {
-    height: 400px;
-    width: 100%;
+    height: 500px;
+    width: calc(100% - 8px);
     background-color: #444;
     color: white;
     text-align: center;
@@ -200,6 +204,16 @@
 .dates-wrapper h1 {
     font-family: "Instrument Serif";
     font-size: 48px;
+    font-weight: normal;
+}
+
+.dates-wrapper-scroll {
+    width: 85%;
+    height: 310px;
+    margin: auto auto 24px auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 
 .important-date {
@@ -209,6 +223,101 @@
     box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
     background-color: white;
     color: black;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 3px 7px 0px 3px;
+    white-space: normal;
+}
+
+.important-date-cal {
+    margin-top: 18px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+    border-radius: 6px;
+    font-family: "Instrument Serif";
+    color: #111;
+    font-size: 24px;
+}
+
+.important-date-cal img {
+    filter: grayscale(100%);
+}
+
+.important-date-time {
+    color: gray;
+    font-size: 18px;
+}
+
+.important-date-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 0px 6px 0px;
+}
+
+.important-date-info span {
+    font-family: "Instrument Serif";
+    font-size: 28px;
+}
+
+.important-date-info button {
+    background-color: gold;
+    border: 1px solid gray;
+    border-radius: 4px;
+    font-family: "Alegreya";
+    font-size: 16px;
+    padding: 4px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: black;
+}
+
+.important-date-info button:hover {
+    background-color: #ffe369;
+}
+
+.event-highlight-scroller {
+    height: 320px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.highlight {
+    height: 320px;
+    width: 5120px;
+    display: block;
+    background-image: url("../resources/event-highlight/highlight.png");
+    background-size: contain;
+    background-position-y: center;
+    background-position-x: 0;
+    background-repeat: repeat-x;
+    animation-name: scrolling;
+    animation-duration: 140s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    position: relative;
+}
+
+.highlight:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrolling {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: -5120px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -260,7 +369,7 @@
     }
 }
 
-@media (min-aspect-ratio: 2/1) and (min-width: 3440px) {
+@media only screen and (min-width: 1920px) { /* (min-aspect-ratio: 2/1) and */
     .opportunity {
         width: 75%;
         left: 12.5%;

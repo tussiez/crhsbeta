@@ -94,7 +94,7 @@ body, html {
     transition: height 0.4s, width 0.4s;
 }
 
-#photo-viewer-wrapper {
+.overlay-wrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -106,36 +106,103 @@ body, html {
     transition: opacity 0.15s;
 }
 
+#details-flexbox {
+    height: 100%;
+    width: 100%;
+}
+
 #photo-viewer {
-    height: 75%;
-    width: 75%;
+    height: 90%;
+    width: 90%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display: block;
     position: fixed;
-    left: 12.5%;
-    top: 12.5%;
+    left: 5%;
+    top: 5%;
+    z-index: 2;
 }
 
-.photo-viewer-close {
+.overlay-close {
     display: block;
     position: fixed;
     right: 20px;
     top: 20px;
     font-size: 32px;
     color: white;
-    background: none;
+    background: #333;
     border: none;
     cursor: pointer;
     font-family: "Instrument Sans", sans-serif;
     border-radius: 4px;
-    transition: color 0.2s background-color 0.2s;
+    transition: 0.2s;
+    z-index: 2;
 }
 
-.photo-viewer-close:hover {
+.overlay-close:hover {
     color: black;
     background-color: white;
+}
+
+.behind-close {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#details-window {
+    height: 50%;
+    width: 50%;
+    max-height: 400px;
+    min-height: 300px;
+    min-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    line-height: 1.4;
+    z-index: 2;
+}
+
+.details-date {
+    font-weight: bold;
+}
+
+.details-date::before, .details-location::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-position: center;
+    margin-right: 6px;
+}
+
+.details-date::before {
+    background-image: url("../resources/images/calendar.svg");
+}
+
+.details-location::before {
+    background-image: url("../resources/images/location.svg");
+}
+
+
+#details-window .content {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+#details-window h1 {
+    font-family: "Instrument Serif";
+    font-weight: normal;
+    font-size: 48px;
+    margin-top: 0px;
 }
 
 .navbar {
@@ -398,5 +465,20 @@ a.curr {
             "left-footer"
             "right-footer"
             "bottom-footer";
+    }
+    #photo-viewer {
+        height: 90%;
+        width: 90%;
+        top: 5%;
+        left: 5%;
+    }
+    #details-window {
+        width: 85%;
+        height: 85%;
+        min-height: 0px;
+        max-height: 600px;
+        min-width: 0px;
+        max-width: 800px;
+        top: 5%;
     }
 }

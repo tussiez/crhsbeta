@@ -17,6 +17,8 @@ const topNavList = document.getElementById("topNavList");
 const loadingBar = document.getElementById("loading-bar-inner");
 const photoViewerWrapper = document.getElementById("photo-viewer-wrapper");
 const photoViewer = document.getElementById("photo-viewer");
+const detailsWindowWrapper = document.getElementById("details-window-wrapper");
+const detailsWindowContent = document.getElementById("details-window").children[0];
 
 // Store loaded JSON
 let content = null;
@@ -154,6 +156,22 @@ function photoViewerToggle(url) {
         photoViewer.style.backgroundImage = `url('${url}')`;
         setTimeout(() => {
             photoViewerWrapper.classList.remove('fade');
+        }, 160);
+    }
+}
+
+function detailsWindowToggle(openState) {
+    if(!openState) {
+        detailsWindowWrapper.classList.add('fade');
+        setTimeout(() => {
+            detailsWindowWrapper.classList.remove('fade');
+            detailsWindowWrapper.style.display = 'none';
+        }, 160);
+    } else {
+        detailsWindowWrapper.classList.add('fade');
+        detailsWindowWrapper.style.display = 'block';
+        setTimeout(() => {
+            detailsWindowWrapper.classList.remove('fade');
         }, 160);
     }
 }

@@ -10,25 +10,35 @@
             "date": "July 3, 2026",
             "image": "resources/service-opportunities/DSC_0421.JPG"
         },
-        "bt4e": {
-            "title": "Environment",
-            "body": "Help support the environment",
+        "seg2": {
+            "title": "Second Segment",
+            "body": "The new second segment is coming!",
             "author": "Viviane Tran",
-            "image": "resources/service_opportunities/DSC_0421.JPG"
+            "date": "July 3, 2026",
+            "image": "resources/service-opportunities/DSC_0421.JPG"
         }
     },
     "datesToKnow": [
         {
             "title": "New Invite Meeting",
-            "date": "August 23, 2026",
+            "date": "Aug 23",
             "time": "Flex",
+            "location": "Auditorium",
             "description": "New members, head to the auditorium during Flex to learn about Beta."
         },
         {
             "title": "Beta Induction",
-            "date": "September 16, 2026",
+            "date": "Sep 16",
             "time": "6:30 PM",
+            "location": "Auditorium",
             "description": "All new Betas attend the Beta Induction Ceremony!"
+        },
+        {
+            "title": "Big Important Event With Long Name",
+            "date": "Aug 99",
+            "time": "All day",
+            "location": "Auditorium",
+            "description": "big event"
         }
     ],
     "opportunities": [

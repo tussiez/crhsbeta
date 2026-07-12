@@ -6,7 +6,12 @@ function homepageApp() {
     this.newsDate = document.querySelector(".news-date");
     this.newsBody = document.querySelector(".news-body");
     this.newsImage = document.querySelector(".news-image");
-    this.numOpportunities = 0;//this.opportunityDiv.childElementCount;
+    this.seg2Title = document.querySelector(".news-title.seg2");
+    this.seg2Date = document.querySelector(".news-date.seg2");
+    this.seg2Body = document.querySelector(".news-body.seg2");
+    this.seg2Image = document.querySelector(".news-image.seg2");
+    this.datesToKnow = document.querySelector(".dates-wrapper-scroll");
+    this.numOpportunities = 0;
     this.timestamp = 0;
     this.currentOpportunity = 0;
     this.runnning = false;
@@ -74,6 +79,56 @@ function homepageApp() {
     this.processJSON = function(obj) {
         obj.opportunities.forEach(scope.generateOpportunity);
         scope.generateNewsletter(obj.news.newsletter);
+        scope.generateSegment2(obj.news.seg2)
+        obj.datesToKnow.forEach(scope.generateDateToKnow);
+    }
+
+    this.generateDateToKnow = function(dtn) {
+        let outer = document.createElement("div");
+        scope.datesToKnow.appendChild(outer);
+        outer.classList.add("important-date");
+        let calPart = document.createElement("div");
+        outer.appendChild(calPart);
+        calPart.classList.add("important-date-cal");
+        let calIcon = document.createElement("img");
+        calIcon.setAttribute("src", "resources/images/calendar.svg");
+        calIcon.setAttribute("height", 52);
+        calIcon.setAttribute("width", 52);
+        calPart.appendChild(calIcon);
+        let calDate = document.createElement("span");
+        calDate.innerText = dtn.date;
+        calPart.appendChild(calDate);
+        let calTime = document.createElement("span");
+        calTime.classList.add("important-date-time");
+        calTime.innerText = dtn.time;
+        calPart.appendChild(calTime);
+        let dateInfo = document.createElement("div");
+        dateInfo.classList.add("important-date-info");
+        outer.appendChild(dateInfo);
+        let dateTitle = document.createElement("span");
+        dateTitle.innerText = dtn.title;
+        dateInfo.appendChild(dateTitle);
+        let dateButton = document.createElement("button");
+        dateButton.innerText = "More Info";
+        dateButton.onclick = () => {
+            scope.displayDateDetails(dtn);
+        }
+        dateInfo.appendChild(dateButton);
+    }
+
+    this.displayDateDetails = function(dtn) {
+        let header = document.createElement("h1");
+        header.innerText = dtn.title;
+        let dateDetail = document.createElement("span");
+        dateDetail.classList.add("details-date");
+        dateDetail.innerText = `${dtn.date} @ ${dtn.time}`;
+        let locationDetail = document.createElement("span");
+        locationDetail.innerText = dtn.location;
+        locationDetail.classList.add("details-location");
+        let detailDesc = document.createElement("p");
+        detailDesc.innerHTML = dtn.description;
+        detailsWindowContent.replaceChildren(header, dateDetail, document.createElement("br"), locationDetail, document.createElement("br"), detailDesc);
+        detailsWindowToggle(true);
     }
 
     this.generateNewsletter = function(nsl) {
@@ -81,6 +136,13 @@ function homepageApp() {
         scope.newsDate.innerHTML = `${nsl.author} &nbsp;&bull;&nbsp; ${nsl.date}`
         scope.newsTitle.innerText = nsl.title;
         scope.newsBody.innerHTML = nsl.body;
+    }
+
+    this.generateSegment2 = function(seg) {
+        scope.seg2Image.style.backgroundImage = `url('${seg.image}')`;
+        scope.seg2Date.innerHTML = `${seg.author} &nbsp;&bull;&nbsp; ${seg.date}`
+        scope.seg2Title.innerText = seg.title;
+        scope.seg2Body.innerHTML = seg.body;
     }
 
     this.generateOpportunity = function(opr) {
