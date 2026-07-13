@@ -81,6 +81,7 @@ function homepageApp() {
         scope.generateNewsletter(obj.news.newsletter);
         scope.generateSegment2(obj.news.seg2)
         obj.datesToKnow.forEach(scope.generateDateToKnow);
+        document.querySelector(".highlight-title").innerText = `Event Highlight: ${obj.eventHighlight}`;
     }
 
     this.generateDateToKnow = function(dtn) {
