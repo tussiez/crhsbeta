@@ -574,8 +574,8 @@ a.curr {
         border-top: 1px solid gray;
     }
     .segment-left, .segment-right {
-        width: calc(100% - 12px);
-        padding: 96px 6px 96px 6px;
+        width: calc(100% - 20px);
+        padding: 96px 10px 96px 10px;
     }
     .bgheader::before {
         background-attachment: scroll;
